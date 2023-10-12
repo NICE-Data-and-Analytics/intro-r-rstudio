@@ -22,7 +22,7 @@ order.
 ## Break
 [Break](https://nhs-r-community.github.io/intro-r-rstudio/session-break-slide.html#/title-slide)  
 
-## Quarto and GGplot2
+## Quarto and ggplot2
 [Opening Quarto](https://nhs-r-community.github.io/intro-r-rstudio/session-quarto.html#/title-slide)  
 [Introducing chart visualisations using {ggplot2}](https://nhs-r-community.github.io/intro_r/04-workshop_ggplot2.html#1)
 
