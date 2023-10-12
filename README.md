@@ -42,6 +42,8 @@ order.
 
 ## Break
 [Break](https://nhs-r-community.github.io/intro-r-rstudio/session-break-slide.html#/title-slide)  
+
+# Creating Objects
 [Creating new objects](https://nhs-r-community.github.io/intro-r-rstudio/session-objects.html#/title-slide)  
 [Using {datapasta}](https://nhs-r-community.github.io/intro-r-rstudio/session-datapasta.html#/title-slide)  
 
