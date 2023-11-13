@@ -1,6 +1,18 @@
 ---
 title: "Introduction to R and Rstudio"
+title-slide-attributes: 
+  data-background-color: "#43464B"
+  data-notes: "This session is about data wrangling with dplyr. I think this is the most important session - so do try and stay with it if you can. Dplyr is probably the one package I'll use for every R Project, and if you can be good at dplyr then you'll save yourself loads of time in the future." 
 subtitle: "Session  - Cleaning data with {dplyr}"
+author: "Zoë Turner"
+format:
+  revealjs:
+    theme: [default, nhsr-quarto.scss]
+    logo: https://raw.githubusercontent.com/nhs-r-community/assets/main/logo/nhsr-logo.svg
+    code-link: true
+    css: nhsr-quarto.scss
+    self-contained: true
+    preview-links: true
 execute: 
     echo: true
     eval: false
@@ -36,6 +48,12 @@ Is the reshaping or transforming of data into a format which is easier to work w
 
 This is often the largest part of many analyses and data science
 
+::: notes
+
+So dplyr is a package to help with data wrangling. When we say wrangling, we essentially mean the process of manipulating data into the format that we want it in. So after you load and maybe clean the data, you'll want to manipulate it into a certain format to help you with subsequent analysis or plotting.
+
+:::
+
 ## A note on tidy data
 
 Tidyverse functions work best with tidy data:
@@ -45,6 +63,11 @@ Tidyverse functions work best with tidy data:
 
 (Broadly, this means long rather than wide tables)
 
+::: notes
+
+Now the tidyverse suite of packages, as implied by the name, encourage data to be 'tidy' for subsequent working. This means that data should be in the form where each variable forms a column, and each observation forms a row. If you've worked with SQL, access or other databases, that shouldn't be new to you, but it's worth keeping in mind as the goal you should aim for.
+
+:::
 
 ## {dplyr} package
 
@@ -53,6 +76,12 @@ Tidyverse functions work best with tidy data:
 :::incremental
 - Most wrangling puzzles can be solved with knowledge of just a few {dplyr} verbs or functions 
 - Many of the concepts of these functions exist in SQL but {dplyr} (and other packages) can extend this further
+:::
+
+::: notes
+
+The way dplyr works is that it's structured around a series of functions or 'verbs' which perform common wrangling tasks, such as reordering, creating new variables, filtering and so on. This, together with the way the code is written, means that complex data manipulation can be concisely and easily expressible by chains of these verbs, as I'll come on to.
+
 :::
 
 ## Some functions/verbs to start with
@@ -69,7 +98,11 @@ dplyr::summarise()
 ```
 
 ::: notes
+
+So in dplyr there are 5 main functions or verbs, arrange, filter, mutate, group_by, and summarise. Note that summarise can be spelt either way. The main author of the tidyverse is a New Zealander, so British English spellings work too.
+
 Some of these may make sense, arrange/filter, mutate may be new and group_by may be a false friend to SQL users as it conceptually does different things - it doesn't distinct (use `distinct()` or `unique()`)
+
 :::
 
 ## Building with steps
@@ -85,6 +118,12 @@ peel then
 slice into medium sized pieces then  
 boil for 25 minutes then  
 mash
+
+::: notes
+
+Now, to illustrate how these work, I'm going to draw the analogy with a cooking recipe. In a cooking recipe, for example for mashed potato, you're following a series of steps and carrying out those steps sequentially, to get the outcome you want.
+
+:::
 
 ## Recipe as code
 
@@ -110,6 +149,16 @@ Take a `potato` then
 
 the `|>` can be replaced with the word 'then' in this recipe scenario
 
+::: notes
+
+So, you start with the raw data, or an R object, in this analogy, the raw potato....
+Then you perform the actions, so first you need to peel it. In the case of writing code, each of these action steps is a function or dplyr verb. So peel might be a peel() function.....
+Slice might take an argument specifying exactly how thin you want the slices.....
+The boil action might take an argument for how long for.....
+And run start to finish, you get your mashed potato. Note that dplyr verbs are normally strung together with this |> symbol, between each step.
+
+:::
+
 ## Pipe
 
 ::: columns
@@ -124,7 +173,21 @@ You might be familiar with the pipe `%>%` from {magrittr} and in {tidyverse} but
 :::
 :::
 
+::: notes
+
+depending on the age of the code, you might see the magrittr pipe used %>%, but since R 4.1 there is a native pipe |> which people are now switching to. You can change the default pipe used for the shortcut key ctrl+shift+m in options / code 
+
+:::
+
 ## Q1. Which organisation provided the highest number of Mental Health beds?
+
+::: notes
+
+Ok, lets actually try some of this out. You may still have the beds_csv messy data we loaded in before, which we did some cleaning on, but if not i'll demo this again (demo load in)
+
+once, it's loaded in, we'll have a go at answering this question above 'Which organisation provided the highest number of Mental Health beds?'
+
+:::
 
 ## arrange()
 
@@ -134,6 +197,13 @@ Reorder rows based on selected variable
 beds_data |> 
   arrange(beds_av)
 ```
+
+::: notes
+
+To do this, we can use the arrange function, which, as the name suggests, orders the dataset according to a particular variable.
+(demo) - this gives the wrong answer, as default behaviour is to sort ascending, and we want the highest at the top
+
+:::
 
 ## Descending data
 
@@ -148,11 +218,30 @@ beds_data |>
 
 `desc()` works for text and numeric variables
 
+::: notes
+
+To do this, we can use the arrange function, which, as the name suggests, orders the dataset according to a particular variable.
+(demo) - this gives the wrong answer, as default behaviour is to sort ascending, and we want the highest at the top
+To sort descending, you need to wrap the sort variable inside a desc() function
+(demo)
+And if you do that, you see that [trust] had the most mental health beds. But of course this data is monthly, so really we want a more specific question
+(check everyone ok and got that result)
+
+:::
+
 ## Q2. Which 2 organisations provided the highest number of MH beds in September 2018?
 
 ::: incremental
 - We'll use `arrange()` as before to get the "highest number"
 - But we require only observations with the date "September 2018"
+:::
+
+::: notes
+
+So lets pick a specific period to look at, and exclude observations from other month-year pairs. This data is actually quarterly, so September 2018 is actually the 3 month period ending September 2018.
+We'll need arrange(), but something else as well
+We need something which will return only values from September 2018
+
 :::
 
 ## filter()
@@ -180,6 +269,13 @@ beds_data |>
 ```
 :::
 
+::: notes
+
+The verb we want here is filter()
+
+And to use it, we pass in the condition we want. For a test of equality, we need to use two equals signs, and not equal to is an exclamation mark and an equals sign. The negative test of equality (i.e. return all but...) is exclamation mark then equals
+
+:::
 
 ## Ordered and filtered
 
@@ -193,7 +289,9 @@ beds_data  |>
 ```
 
 ::: notes
-This is a small dataset but useful to `filter()` early on in code to reduce the computational load - can make a big difference when data frames are millions of rows.
+
+It's possible to do this the other way arround - i.e. sort then filter, rather than filter then sort. However useful to `filter()` early on in code to reduce the computational load - can make a big difference when data frames are millions of rows.
+
 :::
 
 
@@ -209,12 +307,34 @@ beds_data  |>
   slice_head(n = 2)
 ```
 
+::: notes
+
+finally, because we're interested in only the top, we can use a slice function to return only the top 2 rows, in this case slice_head(). Slice_max() or something else could also be used to avoid having to arrange.
+(demo and check everyone ok thus far)
+
+
+:::
+
 ## Q3. Which organisations had the highest percentage bed occupancy in September 2018?
 
 ::: incremental
 - We'll use `arrange()` as before to find "highest"
 - We'll use `filter()` as before to restrict by date "September 2018"
 - But we don't have a percentage variable in the data
+:::
+
+::: notes
+
+Now we'll consider a slightly more focussed question, looking at the percentage occupancy
+
+We'll keep arrange from before
+
+and also filter
+
+But we don't have a percentage occupancy variable
+
+We need to create it...
+
 :::
 
 ## Create new variables
@@ -230,7 +350,13 @@ beds_data |>
 ```
 
 ::: notes
+The verb to create new variables is mutate. It's the least intuitively named of the verbs, but one that you'll use often enough that you'll remember it. We name the new variable, then say how it's defined. In this case it's the occupied number of beds divided by the total number of beds, to give an occupancy percentage.
+
+So we can slot that all together. So here we first create the variable (though we could have done it after the filter), then filter, then arrange according to the new variable descending
+(demo)
+
 Point out the differences between top two as both are 100 percent but very different sizes. Without denominators we can't really be sure what's happening.
+
 :::
 
 ## Q4. What was the mean number of beds (for the dataset)?
@@ -238,6 +364,13 @@ Point out the differences between top two as both are 100 percent but very diffe
 ::: incremental
 - Let's first look at how we'd produce summary statistics like a mean
 - And then see how this can be applied to groups of data like organisations
+:::
+
+::: notes
+
+Ok, lets consider a more complex question about what the mean average bed numbers were at each point
+So we probably need to create a mean at some point, but we also need to add together values across the whole dataset - so we can't just use mutate easily
+
 :::
 
 ## summarise()
@@ -250,6 +383,14 @@ beds_data |>
   summarise(mean_beds = mean(beds_av))
 ```
 
+::: notes
+
+What we want to use is the summarise verb, which collapses the data frame and generates summary statistics for all observations. Here we are telling dplyr we want to summarise the dataframe with a summary variable means_beds, which is defined as the mean of available beds.
+(demo)
+Unfortunately, the result is NA. This is because we have missing variables, coded as NA in the dataframe
+
+:::
+
 ## Missing values
 
 We'll need to remove NA (not available) values to get a suitable mean. `TRUE` can also be `T`
@@ -260,6 +401,14 @@ beds_data |>
   summarise(mean_beds = mean(beds_av,
                              na.rm = TRUE)) 
 ```
+
+::: notes
+
+What we can do in this circumstance is to tell summarise to ignore the NA values, which we do by setting the na.rm argument to TRUE (all caps). You can use a capital T instead, but I'd advise against it. Your code is slightly more secure by writing it in full, and it's more readable as well
+(demo)
+And if you run that, you see that the result is an average of 300 beds for the whole dataset.
+
+:::
 
 ## Have a go!
 
@@ -299,6 +448,14 @@ countdown::countdown(minutes = 10,
                      font_size = "2em")
 ```
 
+::: notes
+
+Ok, so I'm going to invite you to have a go yourselves now, to create summary statistics using this data, first to work out the median number of beds, with the median function, then also to return the total number of beds and the total number of occupied beds across all periods in the dataset. Strictly speaking these would be bed-quarters, which doesn't make sense as a unit, but for the purposes of learning it's ok.
+
+I'll give you 10 mins, then we'll look at the answer.
+
+:::
+
 ## Answer for summary statistics
 
 `median()`
@@ -319,11 +476,25 @@ beds_data |>
             total_occupacy = sum(occ_av, na.rm = TRUE))
 ```
 
+::: notes
+
+Here's the code and the results you hopefully got. How did everyone do? Anyone want to volunteer whether they got those results or not?
+
+(discuss a bit then move on)
+
+:::
+
 ## Applying `summarise()` to groups
 
 ::: incremental
 - Now we know how to use `summarise()`
 - We'll produce a summary value for **each value of date**
+:::
+
+::: notes
+
+typically when we compute summary statistics we want to produce them for particular groups. It is useful therefore to be able to group data by certain variables.
+
 :::
 
 ## group_by() - temporary grouping
@@ -339,6 +510,14 @@ beds_data |>
             .by = date)
 ```
 
+::: notes
+
+The most modern way of doing this, new this year, is to add a .by argument to summarise
+(demo)
+As you can see, this gives us a mean_beds number for each value of date.
+
+:::
+
 ## group_by() - persistent grouping
 
 `group_by()` is a function that you may see in other code. 
@@ -353,27 +532,11 @@ beds_data |>
 
 ```
 
-## ungroup()
+::: notes
 
-<img class="center" src="img/session06/group_by_ungroup.png" alt="Cartoon of fuzzy creatures created by Allison Horts with party hats on. Two are together and happy but one is behind holding a present and looking sad. The words."/>
+Until recently, this was done by the group_by() function which you'll typically still see in most code or examples, so group_by() would generally preceed summarise in a chained pipe. If doing it this way, then best to use an ungroup() function after summarise to remove it, so you don't forget the dataframe is grouped.
 
-## Break? 
-
-Option to take this break before an exercise or after
-
-```{r}
-#| echo: false
-#| eval: true
-countdown::countdown(minutes = 10,
-                     color_border = "#005EB8",
-                     color_text = "#005EB8",
-                     color_running_text = "white",
-                     color_running_background = "#005EB8",
-                     color_finished_text = "#005EB8",
-                     color_finished_background = "white",
-                     margin = "0.9em",
-                     font_size = "2em")
-```
+:::
 
 ## Q5. Which organisations have the highest mean % bed occupancy? 
 
@@ -399,13 +562,27 @@ countdown::countdown(minutes = 10,
                      font_size = "2em")
 ```
 
+::: notes
+
+Okay, one last question, this time for you to have a go at as a test of your understanding. Can you find which organisations have the highest mean % bed occupancy.
+
+So to compute the mean occupancy, you'll need to use summarise to compute the two sums, of total and occupied beds, and you'll want to group by organisation using.by()
+
+then take the result and mutate those numbers to add a column working out the ratio of occupied and total beds, to get a percentage occupancy, then, arrange the dataframe so the highest value is at the top. 
+
+Don't forget that some values will be missing, so need to use na.rm = TRUE in your sum functions
+
+Go!
+
+:::
+
 ## Solutions
 
 ```{r}
 beds_data |> 
   summarise(total_beds = sum(beds_av, na.rm = TRUE),
             total_occupancy = sum(occ_av, na.rm = TRUE),
-            .by = org_name) |> 
+            .by = date) |> 
   mutate(perc_occ = total_occupancy / total_beds) |> 
   arrange(desc(perc_occ))
 
@@ -423,4 +600,20 @@ beds_data |>
 
 ```
 
+::: notes
+
+Here's the code that is suggested, using .by and then, if you wanted to use the old group_by() function too. 
+
+Demo code
+
+How was that? Don't worry too much if didn't get it as it's a hard exercise.
+
+:::
+
 ## End of session
+
+::: notes
+
+Ok, will run though some final dplyr things, just me demoing it this time
+
+:::

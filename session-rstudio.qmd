@@ -1,6 +1,18 @@
 ---
 title: "Introduction to R and Rstudio"
+title-slide-attributes: 
+  data-background-color: "#43464B"
+  data-notes: "This session is an intro to RStudio and it's relationship to R"
 subtitle: "Session  - R and R studio"
+author: "Zoë Turner"
+format:
+  revealjs:
+    theme: [default, nhsr-quarto.scss]
+    logo: https://raw.githubusercontent.com/nhs-r-community/assets/main/logo/nhsr-logo.svg
+    code-link: true
+    css: nhsr-quarto.scss
+    self-contained: true
+    preview-links: true
 execute:
   echo: true
   eval: true   
@@ -12,6 +24,12 @@ R is both the name of a programming language and a program
 
 <img src="img/session01/race_car.PNG" alt="A photo of a racing type car with the safety bars on show as it has no roof"/>
 
+::: notes
+
+R is the underlying programming language, so you can think of it like the 'engine' or the fundamental structure of a car. It's what is required to get things going, but if that's all you had, you might find it a bit unfriendly or uncomfortable to work with, like the stripped down car in this picture
+
+:::
+
 ## RStudio program
 
 RStudio is a software application with tools to
@@ -21,11 +39,13 @@ improve your programming experience
 <img src="img/session01/roberto-nickson-unsplash.PNG" alt="A photo of a modern car dashboard"/>
 
 ::: notes
-Analogy from the book Modern Dive: [www.moderndive.com](https://moderndive.com/)
 
-Other IDEs can be used like Visual Studio Code
+RStudio is a piece of software that makes working with R much easier. So to continue the analogy, you can think of RStudio as like the dashboard, drivers seat and plush interior of the car. It won't work without R doing all the work in the background, but it makes everything more comfortable and easier. The dashboard will give you additional information about what's going on with the car, and the controls will allow you to change how the car works in a nice, easy way.
 
-RStudio, the company is now Posit
+Don't necessarily need to use RStudio - if you have prior IDE experience you can use other IDEs can be used like Visual Studio Code, but personally I'd recommend starting with RStudio if you haven't previously used an IDE.
+
+Confusingly, the company that developed the RStudio IDE also used to be called RStudio, but is now called Posit. If you see older materials you might still see Rstudio (the company) called by it's own name. 
+
 :::
 
 ## RStudio features  
@@ -37,6 +57,16 @@ RStudio, the company is now Posit
 -   Works with other languages - not just R
 -   Very easy to set up
 -   New features are always added...
+:::
+
+::: notes
+
+Now, when you load up RStudio, it will load an R session in the background, and you don't have to worry about the user-unfriendliness of interacting directly with R
+
+Everything that you can do in the RStudio interface is possible to do with code, so essentially it's just acting as a nice graphical front-end to R. RStudio also works with languages other than R, so you can do python and I think SQL in RStudio, if desired. 
+
+As a beginner, it's quite a nice tool to use alongside R, so we're going to familiarise ourselves with it now.
+
 :::
 
 ## Open RStudio
@@ -60,6 +90,18 @@ pi*2
 :::
 :::
 
+::: notes
+
+Ok, we're nearly at the point of letting everybody loose in RStudio. Can everyone try and open Rstudio and see if you can get to something that looks like this... (next slide). If not, shout up.
+
+When you first start Rstudio, you'll see the console window on the left. You can type R code directly in here and it will be evaluated instantly. You can try this in a second with some basic arithmetic, and see how it calculates. 
+
+(demo this)
+
+However, the way you really want to be working is to use R script files in the editor....
+
+:::
+
 ## Introducing the Editor
 
 ::: columns
@@ -77,6 +119,15 @@ The cloud `Ctrl + Shift + Alt + N`
 <img src="img/session01/new_file.PNG" alt="Screenshot of the menu from the icon of a white page with a green circle and a white cross"/>
 :::
 :::
+
+::: notes
+
+So to open an R Script file, you can click the little plus document button in the top left of RStudio and then "R Script", or alternatively control shift N if you're using RStudio Desktop, or Control-Shift Alt N on Rstudio cloud.
+
+(demo this)
+
+:::
+
 
 ## Editor features
 
@@ -99,7 +150,15 @@ Keyboard shortcuts:\
 :::
 
 ::: notes
-Show in RStudio `Tools/Keyboard` Shortcut help for existing shortcuts and where to alter
+
+You can copy, paste, and save the file in the editor window. 
+
+(demo this)
+
+It also has the advantage of things like color coding the text, giving you autocomplete suggestions and allowing you to run code in chunks, pressing control and enter, rather than typing sequentially at the console.
+
+(demo this)
+
 :::
 
 ## Commenting
@@ -115,11 +174,35 @@ Comment frequently, at least in the beginning
 Keyboard shortcut:\
 `Ctrl+Shift+C` for commenting and uncommenting
 
+::: notes
+
+You can also write notes in the code by prefixing a line with the hash symbol, or pressing control+shift+c with the code selected
+
+(demo this)
+
+It's good practice to do this, so you can remind yourself and others why you are doing each step. Nothing more frustrating than wondering why you did something 2 months ago and having no notes as to why. So I would encourage you to do this.
+
+If you haven't already, would encourage you to have a go at opening, saving, and writing code in a script file. I'll give everyone a couple of mins to try, and if anyone is having any problems, please shout up if you're able to do so. 
+
+run through problems....
+
+Ok, hopefully that's ok, going to move on now, so I'll go back to the slides
+
+:::
+
 ## Tools \> Options \> workspace
 
 [Reasons why this is default](https://community.rstudio.com/t/defaults-of-saving-and-restoring-workspace/939)
 
 <img src="img/session01/global_options.PNG" alt="Screenshot of the Tools/Global Options wizard" class="center"/>
+
+::: notes
+
+On the menu under Tools/global options are lots of options for working in RStudio. I'm going to suggest unticking the box marked 'Restore .RData into workspace at startup' and then clicking ok. This means you'll start R 'fresh' each time without things from your old analysis saved in the workspace. This is good practice as your script should be self-contained, and reduces the risk of errors being missed because you've got old data or items from last time.
+
+(demo this)
+
+:::
 
 ## Tools \> Options \> colours
 
@@ -128,22 +211,13 @@ Accessibility and comfort for all
 <img src="img/session01/appearance.PNG" alt="Screenshot of the Appearance tab from Tools/Global Options wizard" class="center"/>
 
 ::: notes
+
+Also under global options is an appearance section, which will allow you to change the theme - so if you like a dark mode, or you want to use different colours to the default ones, have a play around here and find something you like.
+
 Show the dark mode, SQL for familiar function colours and Solarized for glare reduction.
-:::
 
-## Packages
+OK that's the end of the session - any questions before we move onto the final intro topic before I pass on to Farai?
 
-::: columns
-::: {.column width="50%"}
-### R packages are like apps for your phone:
-
-Extend the capabilities of the basic or "base R"\
-with extra functions, datasets, code examples & documentation.
-:::
-
-::: {.column width="50%"}
-<img src="img/session01/app_analogy.PNG" alt="Simple flowchart of packages installation to loading and how that matches the download app to open app on a mobile phone" class="center"/>
-:::
 :::
 
 ## End Session

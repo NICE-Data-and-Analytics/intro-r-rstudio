@@ -1,9 +1,21 @@
 ---
 title: "Introduction to R and Rstudio"
+title-slide-attributes: 
+  data-background-color: "#43464B"
+  data-notes: "Next topic to run through is importing data, which is normally going to be the first step you do in any given analysis" 
 subtitle: "Session - import csv"
+author: "Zoë Turner"
+format:
+  revealjs:
+    theme: [default, nhsr-quarto.scss]
+    logo: https://raw.githubusercontent.com/nhs-r-community/assets/main/logo/nhsr-logo.svg
+    code-link: true
+    css: nhsr-quarto.scss
+    self-contained: true
+    preview-links: true
 execute:
   echo: true
-  eval: false
+  eval: false    
 ---
 
 
@@ -13,17 +25,37 @@ There are packages to import all types of data and RStudio has wizards for just 
 
 We are going to first import a csv using the wizard but also get the code to copy to scripts for reproducibility.
 
+::: notes
+
+There are lots of different formats for importing data of course, and most will have some sort of package for importing. Here we're just going to cover csv files, and to a lesser extent excel workbooks. 
+
+The example we're going to run through is to import the capacity_ae.csv file (demo). There is an import wizard window which will help with this, and we're going to use this to help write the relevant code. First thing is to save it in the same place as your working directory. So remember your working directory is specified above the console window (show) - can everyone save the file there, then it should appear in your 'files' tab if you refresh it (demo)
+
+:::
+
 ## Import wizard
 
 We will use the "Import Dataset" button (but you can also click on the file itself):
 
 <img src="img/session03/import-screenshot.PNG" alt="Screenshot of RStudio with Import Dataset drop down button highlighted as well as the file capacity_ae.csv in the Files tab." class="center" width="80%"/>
 
+::: notes
+
+To start the import process, you could either click on the Import Dataset button in the top right of RStudio, or click on the file itself in the file window and click on import dataset. (Demo)
+
+:::
+
 ## Two ways of importing csv
 
 The base R doesn't use any packages but imports a `data frame` in R whereas {readr} is built on the base R and creates a neater `tibble`
 
 <img src="img/session03/drop-down-import.PNG" alt="Screenshot of the drop down menu when Import Dataset is selected in RStudio. From Text (readr)... is highlighted." class="center" width="60%"/>
+
+::: notes
+
+After clicking on the Import Dataset button, you'll get a dropdown of various options. There are two options for csv files data, using the base import or the readr package one. We're going to use readr which formats things slightly better in a 'tibble' format
+
+:::
 
 ## tibble = data frame
 
@@ -37,11 +69,23 @@ The base R doesn't use any packages but imports a `data frame` in R whereas {rea
 
 https://tibble.tidyverse.org/)
 
+::: notes
+
+tibbles are very similar to the base r dataframe, but force the user to specify options and be intentional about choices rather than assuming default settings. It's a little more work, but the additional work forces you to write better code and be aware of any formatting issues. 
+
+:::
+
 ## Find the file
 
 Locate the file `capacity_ae.csv`
 
 <img src="img/session03/wizard.PNG" alt="Screenshot of the blank import dataset wizard with the Browse... to locate files highlighted."/>
+
+::: notes
+
+After you've clicked on the "From text (readr)" you'll get a box which comes up. Click the "Browse" button to find the capacity_ae.csv file, which should be in the project folder, then click open to get back to the import wizard box
+
+:::
 
 ## Data preview
 
@@ -49,11 +93,25 @@ When the file is located {readr} is used automatically and the data preview popu
 
 <img src="img/session03/capacity-ae-preview.PNG" alt="Screenshot of Import Text wizard with file selected and data in the preview."/>
 
+::: notes
+
+At that point you should see something like this. You've just located the file which is step 1. You will then see a preview of the data. It's usually a good thing to check that the data looks reasonable, the columns are as expected, and the data types are correct. Dates should be dates, numbers should be double or integers, true / false values are logical etc.
+
+:::
+
 ## Getting the code for later
 
 Whilst it's possible just to select import, RStudio gives you the option to copy the code:
 
 <img src="img/session03/copy-wizard-code.PNG" alt="Screenshot of the code highlighted from the Import Wizard in RStudio."/>
+
+::: notes
+
+If we were to use the wizard completely, we'd now click the import button to bring it in. However, we want to do a bit of practice in using code to do this, so....Instead what we're going to do is copy the code in this window to the clipboard....Either by selecting it and control-c, or by clicking the the clipboard icon on the right
+
+(demo)
+
+:::
 
 # Running the code
 
@@ -64,5 +122,19 @@ library(readr) # Good practice to put this at the top of a script
 
 capacity_ae <- read_csv("capacity_ae.csv")
 ```
+
+::: notes
+
+After copying, click cancel to close the import wizard, then paste with control-v into your open RScript file which should now look something like this, if you've copied the whole thing
+
+or this if you've copied one line. Note that you need either library(readr) or library(tidyverse) before the read_csv function. The tidyverse contains readr so from that point of view we're doing the same thing
+
+Try and run the script by clicking source, or selecting everything and hitting run, and you should then see the data appear in the environment pane in the top right, as so
+
+pause and check everyone ok.
+
+Ok, if that's ok, we'll try something a bit trickier, dealing with a messier csv fild
+
+:::
 
 ## End session

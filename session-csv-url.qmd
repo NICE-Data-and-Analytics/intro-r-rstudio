@@ -1,7 +1,17 @@
 ---
 title: "Introduction to R and Rstudio"
+title-slide-attributes: 
+  data-background-color: "#43464B"
 subtitle: "Session - import csv from the web"
 author: "Zoë Turner"
+format:
+  revealjs:
+    theme: [default, nhsr-quarto.scss]
+    logo: https://raw.githubusercontent.com/nhs-r-community/assets/main/logo/nhsr-logo.svg
+    code-link: true
+    css: nhsr-quarto.scss
+    self-contained: true
+    preview-links: true
 execute:
   echo: true
   eval: false    
@@ -14,12 +24,23 @@ Sometimes it's easier to directly retrieve the csv files from the source on the 
 
 This removes a step in the Reproducible Analytical Pipeline where a person is required to save the file to import.
 
+::: notes
+
+sometimes you might want to directly download to a public url rather than take a copy, for instance if you know that csv will be automatically updated, or you want to share the code with someone but not the csv file.
+
+:::
 
 ## Importing csvs using {readr}
 
 We will use the "Import Dataset" button which is the same way to get csv files from a computer:
 
 <img src="img/session03/import-screenshot.PNG" alt="Screenshot of RStudio with Import Dataset drop down button highlighted as well as the file capacity_ae.csv in the Files tab." class="center" width="80%"/>
+
+::: notes
+
+Again, we can use the import dataset wizard, but rather than select a file, we just paste in a URL
+
+:::
 
 ## File location - using a url
 
@@ -34,4 +55,18 @@ library(readr)
 tb_cases <- read_csv(url("https://raw.githubusercontent.com/nhs-r-community/intro_r_data/main/tb_cases.csv"))
 ```
 
+::: notes
+
+So here you can practice by typing the following url into the box, and then press update, and you'll see that the code window updates to give you the relevant import code and a preview of the data.
+
+Demo this
+
+:::
+
 ## End session
+
+::: notes
+
+OK, that's all for today, any last questions before we finish data importing?
+
+:::

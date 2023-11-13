@@ -1,10 +1,45 @@
 ---
 title: "Introduction to R and Rstudio"
+title-slide-attributes: 
+  data-background-color: "#43464B"
+  data-notes: "This session concerns R Packages or code libraries"
 subtitle: "Session  - Packages"
+author: "Zoë Turner"
+format:
+  revealjs:
+    theme: [default, nhsr-quarto.scss]
+    logo: https://raw.githubusercontent.com/nhs-r-community/assets/main/logo/nhsr-logo.svg
+    code-link: true
+    css: nhsr-quarto.scss
+    self-contained: true
+    preview-links: true
 execute:
     echo: true
     eval: false
 ---
+
+## Packages
+
+::: columns
+::: {.column width="50%"}
+### R packages are like apps for your phone:
+
+Extend the capabilities of the basic or "base R"\
+with extra functions, datasets, code examples & documentation.
+:::
+
+::: {.column width="50%"}
+<img src="img/session01/app_analogy.PNG" alt="Simple flowchart of packages installation to loading and how that matches the download app to open app on a mobile phone" class="center"/>
+:::
+:::
+
+::: notes
+
+You can think of R packages as like little 'apps' like you have on your phone. They're little self-contained things that help you to do what you need to do
+
+They will augment what you're doing with either extra functions, extra datasets, or extra documentation. These will save you time and allow you to do things that aren't easy to do yourself. So rather than write code to do something yourself, you might find that someone has already written something that you can use or build on, saving you time and allowing you to do things that you otherwise wouldn't have the time or the ability to do. I will typically use a number of packages for each R project, and you will probably find you do the same. There's no point reinventing the wheel.
+
+:::
 
 ## Package locations
 
@@ -22,6 +57,13 @@ Many useful packages in development or subject to a lot of change are not on CRA
 
 ROpenSci offer a peer reviewed ecosystem of R packages through GitHub including UKHSA's [{fingertipsR}](https://github.com/ropensci/fingertipsR)
 
+::: notes
+
+Packages are stored in repositories, which are big archives of packages. Mostly you'll deal with the comprehensive R archive network, or CRAN, which has the most packages. Packages submitted here will have an element of peer review and checks on them. You'll find all sorts of packages, from visualisation ones, through to machine learning or modelling, text mining or NLP, ones that create office documents, geospatial ones, all sorts.
+
+There are alternatives - packages in development can often be installed from GitHub, and there are alternate repositories such as ROpenSci. However, mostly you're going to be using CRAN.
+
+:::
 
 ## Packages
 
@@ -47,7 +89,17 @@ or use the RStudio wizard (only for published CRAN packages)
 :::
 
 ::: notes
-Explore searching for packages in this panel
+
+To use a new package, you follow a two step process
+
+First, you need to install the package (only once), using the install.packages function, then each time you want to use it you load it up by using the library function.
+
+To install packages, this is the code you'll use.
+
+(Demo this)
+
+Can everyone try this in the console, or write it an R Script and run the commands. (pause) Everyone ok?
+
 :::
 
 # Loading package
@@ -68,13 +120,14 @@ Can be loaded from the packages panel and code appears in the Console
 :::
 :::
 
-
 ::: notes
-On work computer networks the packages get saved to personal files on C: drives so are not accessible to everyone
 
-RStudio will pick up references to packages not yet loaded (on CRAN)
+Then each time you want to use it you load it up by using the library function.
 
-Also mention how quotations don't matter but case does in R
+(demo this)
+
+I'll give everyone a minute now to do this as we'll use the tidyverse later. Did everyone manage it? (pause)
+
 :::
 
 
@@ -90,12 +143,24 @@ Curly brackets around a {package} is used in text as many packages have "real na
 :::
 :::
 
+::: notes
+
+I'm going to spend a little time discussing one suite of packages called the tidyverse.
+
+:::
+
 ## What is the {tidyverse}?
 
 The [tidyverse package](https://www.tidyverse.org/) collects (some of) the most popular\
 R packages into one.
 
 Also refers to a coding style in R.
+
+::: notes
+
+The tidyverse is a group of packages which work really well together, and make common tasks very much easier, so you'll find you use it almost universally for working in R.
+
+:::
 
 ## {tidyverse} debate
 
@@ -116,7 +181,11 @@ Clashes occur with the packages which you are notified about, but not with those
 ℹ Use the conflicted package to force all conflicts to become errors
 ```
 ::: notes
-Might be best for beginners just to used {tidyverse} as it's easy to install and load altogether.
+
+When you load in the tidyverse, you should see something like this.
+
+Now, loading all the tidyverse at once might mean you have packages that you don't need, but often it's best for beginners just to used {tidyverse} as it's easy to install and load altogether, so that's what I'd recommend.
+
 :::
 
 ## Errors, warnings & notifications
@@ -134,13 +203,17 @@ Warnings - not errors, just information on versions (from an older system)
 Don't rely upon colour changes as all three are orange in the console!
 
 ::: notes
-Errors will be where the code breaks and also says Error. 
+
+Dependent on the version of R you have, you also might get some warning messages like here. Again, these are advisory warnings so don't stop anything running. Don't worry about them if you see them. Has everyone got something similar to the above?
+
+Proper errors are where the code breaks, doesn't run at all and also says Error. 
 
 Warnings often mean the code has run, it's just giving information as something could break.
 
-Red text is possibly avoided because of colour blindness.
-
 {tidyverse} messages are very helpful and have been coded to give good information on errors.
+
+Does anyone have any questions? If not, second session before the break is about RStudio projects, which Farai is doing, so I'll stop sharing my screen and pass over to him
+
 :::
 
 

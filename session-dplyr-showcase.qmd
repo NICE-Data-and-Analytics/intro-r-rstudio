@@ -1,7 +1,17 @@
 ---
 title: "Introduction to R and Rstudio"
+title-slide-attributes: 
+  data-background-color: "#43464B"
 subtitle: "Session  - Showing more {dplyr} functions"
 author: "Zoë Turner"
+format:
+  revealjs:
+    theme: [default, nhsr-quarto.scss]
+    logo: https://raw.githubusercontent.com/nhs-r-community/assets/main/logo/nhsr-logo.svg
+    code-link: true
+    css: nhsr-quarto.scss
+    self-contained: true
+    preview-links: true
 execute:
   echo: true
   eval: true
@@ -27,8 +37,14 @@ beds_data <- read_csv(url("https://raw.githubusercontent.com/nhs-r-community/int
 
 The following are useful functions and some examples of their capabilities for manipulating data.
 
+::: notes
 
-## select()
+This final session before the break looks at some more dplyr manipulation. I'll just demonstrate these, you can follow along if you wish, but no more examples or tests.
+
+:::
+
+
+## select() {.smaller}
 
 Selecting can be by column name
 
@@ -45,12 +61,26 @@ beds_data |>
   select(3:5)
 ```
 
+::: notes
+
+Select is a function to pick out individual columns or variables, so it useful for subsetting a dataset to remove unwanted columns. This can be done by name (the correct way - demo) or by position (not advised, as you may change something further up in your code which means that columns 3:5 are not what you originally thought - demo)
+
+:::
+
 ## Deselecting
 
 ```{r}
 beds_data |> 
   select(-org_code)
 ```
+
+::: notes
+
+you can also preceed a column name with a minus sign, which removes that column from the dataset.
+(demo)
+
+:::
+
 
 ## Select everything()
 
@@ -61,6 +91,12 @@ beds_data |>
   select(org_name,
          everything())
 ```
+
+::: notes
+
+you can also select all columns with the everything() function. This sounds pointless, but what it is useful for is reordering columns. You can use it to move certain columns to the front or back, then refer to all other columns with everything
+
+:::
 
 ## Select starts_with()
 
@@ -73,6 +109,12 @@ beds_data |>
 
 Also `ends_with()`
 
+::: notes
+
+you can also use the starts_with() function to filter columns that start with a certain text
+
+:::
+
 ## contains()
 
 Searches for strings in the column names without the use of %wildcards%
@@ -82,6 +124,11 @@ beds_data |>
   select(contains("s_a"))
 ```
 
+::: notes
+
+and similarly contains() for more flexible matching.
+
+:::
 
 ## Using n() and n_distinct()
 
@@ -93,5 +140,13 @@ beds_data |>
   filter(distinct_number > 1) |> 
   arrange(desc(distinct_number))
 ```
+
+::: notes
+
+finally, you may be interested in knowing how many observations you have in a certain category, which you can do with the n() function, and the distinct_number of different observations, which you can get using n_distinct().
+
+check everyone ok with dplyr or any last questions prior to break.
+
+:::
 
 ## End session
