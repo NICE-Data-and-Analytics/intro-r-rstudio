@@ -2,7 +2,7 @@
 title: "Introduction to R and Rstudio"
 title-slide-attributes: 
   data-background-color: "#43464B"
-  data-notes: "(Wait 5 mins prior to start)... Hello and Welcome to NHSR-Communities Intro to R-Training. My name is..... (introduce self) introduce (cotrainer) - (cotrainer) will be presenting alongside me, we'll be switching back and forward as we go through the two days, to break it up a bit for a bit of variety. Whoever isn't presenting will be able to answer questions in the chat. Farai, do you want to introduce yourself now too....We'll do a round of introductions for everyone else now, if people can switch their cams on that's great, don't need it on through the course but it is a bit nicer for us to see people, you can always switch it off if you need to answer the door, etc....I'll run through list rather than ask people to nominate each other, so if people can introduce themselves, say a little bit about what they're hoping to get out of this course role, and what previous experience they've had, if any with R. (Thank all.) You will have got some pre-instructions about accessing Rstudio or Rstudio cloud. We'll come onto this in a bit, but you've got a bit of grace before actual code writing, so don't panic if you've not got everything setup already. What we're going to start with is a bit of info about the course, what's possible with R, before we get into using R and RStudio. Will share my screen now to get going proper - is this zoomed in enough for people to see?"
+  data-notes: "(Wait 5 mins prior to start)... Hello and Welcome to NHSR-Communities Intro to R-Training. My name is..... (introduce self) introduce (cotrainer) - (cotrainer) will be presenting alongside me, we'll be switching back and forward as we go through the two days, to break it up a bit for a bit of variety. Whoever isn't presenting will be able to answer questions in the chat. (Cotrainer), do you want to introduce yourself now too....We'll do a round of introductions for everyone else now, if people can switch their cams on that's great, don't need it on through the course but it is a bit nicer for us to see people, you can always switch it off if you need to answer the door, etc....I'll run through list rather than ask people to nominate each other, so if people can introduce themselves, say a little bit about what they're hoping to get out of this course role, and what previous experience they've had, if any with R. (Thank all.) You will have got some pre-instructions about accessing Rstudio or Rstudio cloud. We'll come onto this in a bit, but you've got a bit of grace before actual code writing, so don't panic if you've not got everything setup already. What we're going to start with is a bit of info about the course, what's possible with R, before we get into using R and RStudio. Will share my screen now to get going proper - is this zoomed in enough for people to see?"
 subtitle: "Session - Introduction"
 author: "Zoë Turner"
 format:
@@ -21,7 +21,7 @@ embed-resources: true
 
 ## Agenda - Morning (about 3.5 hours)
 
-Course Aims
+Intro and Course Aims
 
 ::: {.fragment .fade-in}
 R and RStudio
@@ -40,7 +40,7 @@ Projects
 :::
 
 ::: {.fragment .fade-in}
-Opening Quarto
+Importing data
 :::
 
 ::: {.fragment .fade-in}
@@ -52,7 +52,8 @@ Visualisation using {ggplot2}
 :::
 
 ::: notes
-The agenda for this morning looks like this. I'm going to talk a little bit about the aims of the course, how to navigate around in RStudio and a little bit about R packages, then {cotrainer} will talk about RStudio projects and Quarto for a bit, before covering ggplot2 (unless we're too late for lunch). After that, or possibly before,  we'll probably have a lunch break at that point.
+
+The agenda for this morning looks like this. I'm going to talk a little bit about the aims of the course, how to navigate around in RStudio and a little bit about R packages, then after a break, {cotrainer} will talk about RStudio projects and importing data, before covering ggplot2 (unless we're too late for lunch). After that, or possibly before,  we'll probably have a lunch break at that point.
 
 :::
 
@@ -61,12 +62,12 @@ The agenda for this morning looks like this. I'm going to talk a little bit abou
 Chapter overview
 
 ::: {.fragment .fade-in}
-Importing data with {readr}
+Manipulating data with {dplyr}
 :::
 
 
 ::: {.fragment .fade-in}
-Manipulating data with {dplyr}
+Publishing with {quarto}
 :::
 
 ::: {.fragment .fade-in}
@@ -86,16 +87,12 @@ Finding Help
 :::
 
 ::: {.fragment .fade-in}
-Ongoing learning
-:::
-
-::: {.fragment .fade-in}
 --------- Course end ---------
 :::
 
 ::: notes
 
-On morning two, we'll cover the main initial tasks you're likely to start with in analysis, importing and then manipulating data, using the common packages readr and dplyr. After the last break, we'll wrap up with 
+In the afternoon, we'll cover the main initial tasks you're likely to start with in analysis, importing and then manipulating data, using the common packages readr and dplyr. After the last break, we'll wrap up with some smaller topics like environment objects, code style and how to find help and ongoing learning.
 
 :::
 
@@ -108,9 +105,11 @@ On morning two, we'll cover the main initial tasks you're likely to start with i
 :::
 
 ::: notes
-So the aim of this course is that it acts as a gentle introduction and essentially gets you to the point of being confident enough to start exploring R yourself. We're not going to cover everything you can do with R in a day, so we're just going to cover the basics and offer some pointers on where to go if you're interested in learning more. What we want to do is help you to get to the point where you feel confident in exploring R, and you're not baffled or intimidated by not knowing where to start.
 
-We'll cover the use of RStudio as an IDE, and the relationship between R and RStudio, get you to work on a bit of data manipulation and visualisation within something called a Quarto report.
+So the aim of this course is that it acts as a gentle introduction and essentially gets you to the point of being confident enough to start exploring R yourself. We're not going to cover everything you can do with R in a day, so we're just going to cover the basics and offer some pointers on where to go if you're interested in learning more. We won't for example, cover how to conduct a cost-effectiveness study in R, or even a linear regression, if it comes down to that. What we want to do is help you to get to the point where you feel confident in exploring R, and you're not baffled or intimidated by not knowing where to start.
+
+We'll cover the use of RStudio as an IDE, and the relationship between R and RStudio, get you to work on familiarity with basic data importing, data manipulation and visualising that data using some basic graphs. 
+
 :::
 
 ## Reasons to use R
@@ -123,11 +122,13 @@ We'll cover the use of RStudio as an IDE, and the relationship between R and RSt
 :::
 
 ::: notes
-Now, obviously we're evangelists for the use of R, but I'd like to end this particular intro with some benefits for doing more of your analysis in R
+
+Now, obviously we're evangelists for the use of R, but I'd like to end this particular intro with some benefits for doing more of your analysis in R, rather than other tools.
 
 One thing that's great about R is the community of R-Users that has grown up around it. So as you'll know, there is the excellent NHS-R Community, but there are also tons of special interest groups and communities with resources, tutorials and code libraries in whatever you're interested in. So if there are specific subjects or areas you're interested in, you're likely to find some resources and people who are also interested in the same things, and who are probably happy to help you on a bit, share interesting things. It's really one of the better things about R, compared to other languages like python.
 
-Another benefit to doing more analysis in R is that it facilitates better sharing, collaborative work, facilitating what have been termed Reproducible Analytical Pipelines. So firstly, you can share R code amongst your team so everyone can work on a project at once. Using code helps make your analysis reproducible, so if you need to re-run an analysis it's really easy to do so, and if anyone wants to verify it, they can do. Finally, R also can be used, with Quarto, to generate reports, documents etc on demand. So if you have a set report that you create periodically, using R and Quarto can save a lot of time rather than updating word files all the time.
+Another benefit to doing more analysis in R is that it facilitates better sharing, collaborative work, facilitating what have been termed Reproducible Analytical Pipelines. Reproducibility is great because if you need to re-run an analysis it's really easy to do so, and if anyone wants to verify it, they can do. Analysis becomes much more transparent and easier for other people to replicate it, tweak it, and satisfy themselves that it is robust work. With something like excel that's a bit harder. 
+
 :::
 
 ## End session

@@ -14,20 +14,33 @@ execute:
 library(countdown)
 ```
 
-
-## R Scripts v RMarkdown v Quarto
+## R Scripts v Quarto
 
 ::: incremental
-- Scripts are very quick files of code with comments but RMarkdown and Quarto mix written text with code.
+-   Scripts are very quick files of code with comments but RMarkdown and Quarto mix written text with code.
 
-- Quarto is a newer version of RMarkdown (2022) and is very similar for R users.
+-   Quarto is a newer version of RMarkdown (2022) and is very similar for R users.
 
-- Quarto allows the possibility of working with colleagues who use other languages like Python.
+-   Quarto allows the possibility of working with colleagues who use other languages like Python.
+:::
+
+::: notes
+Hitherto we've worked in rscript files. Thes script files contain R code only, with code comments. However, there are notebook type formats like Quarto or R Markdown which allow you to write code, alongside formatted text. This may be useful if, for instance, you are writing up a report and want to include the analysis alongside the discussion of the results, so the whole document becomes the output. In that case, you might consider using something like Quarto to unify the analysis with the publishing of the results, rather than copy / pasting outputs into microsoft word or similar.
+
+There are a lot of possibilities with quarto - for example, it is possible to link quarto to reference managers like zotero, to include referencing. Quarto documents can be rendered into to a wide variety of formats, including word documents, pdfs, powerpoint slides, even websites and blogs.
+
+Quarto is also language-agnostic, unlike RMarkdown, so you can use it with R, but you can also use other languages like python to create documents with it.
 :::
 
 ## Open a new Quarto file
 
 <img src="img/session-quarto/open-file-quarto.png" alt="Screenshot of File/New File/Quarto Document..." class="center"/>
+
+::: notes
+I'm just going to do a short demo, as we've all written a lot of code in dplyr. To start with a quarto document, you first go to file, new file, quarto document, which should create something like this, asking you where you want to save it.
+
+Document is obviously for document formats, like pdf, word, or html, and presentation for something like powerpoint, beamer or revealjs for html slides (which is what these slides are made in)
+:::
 
 ## Render
 
@@ -36,24 +49,26 @@ Will open up a wizard to force the file to be saved.
 As Quarto produces an output file it must have rights to save to the location.
 
 ::: notes
-Virtual workspaces like the modern desktop used by NHS England may have issues with this as the working directory cannot be overridden with a project file or setwd(). See the prework for help or contact the NHSER group through NHS Futures/NHSR Slack.
+Now, you'll see that the quarto file is a .qmd format. Once you finish whatever you want to do, you'll want to 'render' the qmd file to get the file into the format you want, whether that's pdf, html, word whatever. To do that, you'll click this 'render button' at the top of the
 :::
 
 ## Have a go!
 
-1. Change the title and then render.
-1. Go to the bottom of the existing code and in Visual mode create a header `Introduction code` and add a small table.
-1. Change the view to Source from Visual - what does the table look like in code?.
-1. Click on the wheel icon next to Render and in that menu select Preview in `View Pane`.
-1. Render the qmd.
+1.  Change the title and then render.
+2.  Go to the bottom of the existing code and in Visual mode create a header `Introduction code` and add a small table.
+3.  Change the view to Source from Visual - what does the table look like in code?.
+4.  Click on the gear icon next to Render and in that menu select Preview in `View Pane`.
+5.  Render the qmd.
 
 ::: notes
-For Visual mode in Quarto:
-Type / then return for the visual mode to get a short list of code like chunks and headers.
+
+There's an exercise here where we create a table and render it, but rather than make you do it unaided, I'll just walk through it slowly and you can follow along. If you make a change to the title then click render, you should see the change in the new version (once rendered).
+
+You can also switch up here between the source mode, where you can see the code, and the visual mode, where you can see the output and formatting.
 
 The table can be created through Insert menu or Table and it's the same.
 
-Type in the Source code table to mess up the structure, go to Visual and show how this can be moved with a mouse, then back to Source and it will be neatened automatically.
+You can also change whether you want to have the output rendered in a separate window or in the top right hand pane in the settings drop down to the right of the render button (demo)
 
 :::
 
@@ -73,17 +88,27 @@ countdown::countdown(minutes = 8,
 
 ## Code chunks
 
-The code sections in Quarto (and RMarkdown) are called chunks.  
+The code sections in Quarto (and RMarkdown) are called chunks.
 
-These are like smaller R scripts.  
+These are like smaller R scripts.
+
+::: notes
+
+The code sections in Quarto (and RMarkdown) are called chunks (show these in demo template doc). The chunks allow you to break up your code so that you show outputs in blocks, alongside text or other formatting that makes sense, so you can preceede a regression results table with a description of the model it, and then have the implications and discussion afterwards.
+
+code chunks are the bits shaded in gray, between three backtick signs
+
+(show grey bits)
+
+:::
 
 ## New code chunks
 
 The default is for R chunks in R Studio but chunks can also be Python
 
-- Create a new R chunk either with the green button with a <img src="img/icons/notebook-insert-chunk.png" alt="A picture of the green square with c button from RStudio to create a new chunk" width="5%" height="5%"/> 
-- Using `Ctrl+Alt+i` 
-- In Quarto Visual type `/` and a drop down menu will appear, R chunk is the first so press Return
+-   Create a new R chunk either with the green button with a <img src="img/icons/notebook-insert-chunk.png" alt="A picture of the green square with c button from RStudio to create a new chunk" width="5%" height="5%"/>
+-   Using `Ctrl+Alt+i`
+-   In Quarto Visual type `/` and a drop down menu will appear, R chunk is the first so press Return
 
 ```{r}
 #| echo: fenced
@@ -92,44 +117,62 @@ The default is for R chunks in R Studio but chunks can also be Python
 
 ```
 
+::: notes
+
+default in Rstudio is for quarto docs to be for R code, but you can change this by amending the language in the curly brackets - so swap out r for python in the text here
+
+you can create a new chunk by using the green C plus button, pressing control alt i, or type / in the visual mode.
+
+Or you can do it like I do and just manually type three backticks in the source mode(!)
+
+(demo each)
+
+:::
+
 ## Chunk options
 
 Each `chunk` is a part of a longer script and needs to be run in order to render.
 
-- **Switch off chunks**
-To stop code running in any of the chunks code:
+-   **Switch off chunks** To stop code running in any of the chunks code:
 
 ```{r}
 #| echo: fenced
 #| eval: false
 
 This will not run and break your code
+
 ```
 
-:::incremental
-- **Showing your code**
-To include code in a report or presentation use `#| echo: true`
+::: incremental
+-   **Showing your code** To include code in a report or presentation use `#| echo: true`
 :::
 
 ::: notes
-Direct to [Quarto documentation](https://quarto.org/docs/computations/execution-options.html) for more chunk option information.
 
-Point out the spaces between #| and option then again between : and the true/false is needed or won't Render
+There are many chunk options available, which you can have a look at via the Quarto website if interested. These options are added via a hash and pipe symbol, and go immediately under the first line of the code chunk. Don't put a line break in there or some of the options won't work.
+
+Typically the options you might want to specify would be eval - which says whether the code is to be run, or whether it's not (i.e. if it's just a demonstration), echo, which controls whether the code results are printed, and 'warning', which controls wether warning messages are printed or not
+
+Point out the spaces between #\| and option then again between : and the true/false is needed or won't Render
 :::
 
 ## Have a go!
 
 Let's try to show code in a report:
 
-1. Create an R code chunk and type a sum like `37 * 6`
-1. In the chunk add `#| echo: false` under the `{r}` and Render
-1. Change the code to `true` and Render
+1.  Create an R code chunk and type a sum like `37 * 6`
+2.  In the chunk add `#| echo: false` under the `{r}` and Render
+3.  Change the code to `true` and Render
 
-Extra time: Add another line for `#| eval: false`,  
+Extra time: Add another line for `#| eval: false`,\
 Render, change to `true` and Render
 
 ::: notes
+
+Again, I'll demo this exercise and you can follow along if you like. I'm going to create a chunk and show the difference between echo on (true) or off (false)
+
 If you show how this works and the chunk has `echo: true` and `eval: true` then this will highlight how the global is overwritten in the chunk in the next section.
+
 :::
 
 ```{r}
@@ -148,7 +191,7 @@ countdown::countdown(minutes = 7,
 
 ## Global options settings
 
-The default {r} settings are for `echo: true` and `eval: true`. 
+The default {r} settings are for `echo: true` and `eval: true`.
 
 To switch these globally in YAML (yet another markup language) use execute and set the options to `false`
 
@@ -160,6 +203,14 @@ execute:
     echo: true
     eval: true
 ```
+
+::: notes
+
+If you get sick of doing this for individual chunks, you can set a global option which then becomes the default for chunks. Chunk-specific options can be set to override, but in the absence of a particular chunk option the global will be used.
+
+Demo dependent on time
+
+:::
 
 ## Self contained
 
@@ -176,7 +227,9 @@ embed-resources: true
 ```
 
 ::: notes
-Note that self-contained from RMarkdown also works as Quarto is backwards compatible.
+
+One thing to point out is that the default html option creates an html file with the images and libraries in an associated folder, which needs to go with the file. To put it all into one html file you can use an embed-resources: option
+
 :::
 
 ## Report output table of contents
@@ -193,6 +246,14 @@ format:
 
 Note that spaces in the YAML matter!
 
+::: notes
+
+Also, finally, if you are using an html output, one nice option is to include a table of contents, which can be automatically done with the tee-oh-cee sub option of the html output.
+
+demo this
+
+:::
+
 ## Naming chunks
 
 ::: columns
@@ -207,6 +268,14 @@ Chunks can be named which makes them easier to navigate from the bottom left han
 :::
 :::
 
+::: notes
+
+Chunks can be named with a label option, which means it's a bit easier to navigate or reference, but equally you can get away without naming them too if the document is simple or small
+
+:::
+
+
+
 # Navigating headers in RStudio
 
 ::: columns
@@ -218,4 +287,18 @@ A headers outline can be switched on/off from the Outline icon in the top right 
 <img src="img/session-quarto/outline-toc.PNG" alt="Screenshot of RStudio with the outline button and menu highlighted" class="center"/>
 :::
 :::
+
+::: notes
+
+You can also navigate around the chunks using the 'outline' pane in Rstudio, to skip to the relevant chunk.
+
+:::
+
+
 ## End session
+
+::: notes
+
+Ok, any questions on quarto or anything else that anyone wants to raise. If not, have a 10 min break before the last sessions of the day. 
+
+:::
