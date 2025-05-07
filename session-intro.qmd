@@ -2,7 +2,7 @@
 title: "Introduction to R and Rstudio"
 title-slide-attributes: 
   data-background-color: "#43464B"
-  data-notes: "(Wait 5 mins prior to start)... Hello and Welcome to NHSR-Communities Intro to R-Training. My name is..... (introduce self) introduce (cotrainer) - (cotrainer) will be presenting alongside me, we'll be switching back and forward as we go through the two days, to break it up a bit for a bit of variety. Whoever isn't presenting will be able to answer questions in the chat. (Cotrainer), do you want to introduce yourself now too....We'll do a round of introductions for everyone else now, if people can switch their cams on that's great, don't need it on through the course but it is a bit nicer for us to see people, you can always switch it off if you need to answer the door, etc....I'll run through list rather than ask people to nominate each other, so if people can introduce themselves, say a little bit about what they're hoping to get out of this course role, and what previous experience they've had, if any with R. (Thank all.) You will have got some pre-instructions about accessing Rstudio or Rstudio cloud. We'll come onto this in a bit, but you've got a bit of grace before actual code writing, so don't panic if you've not got everything setup already. What we're going to start with is a bit of info about the course, what's possible with R, before we get into using R and RStudio. Will share my screen now to get going proper - is this zoomed in enough for people to see?"
+  data-notes: "(Wait 5 mins prior to start)... Hello and Welcome to our Intro to R-Training Session. My name is..... (introduce self) introduce (cotrainer) - (cotrainer) will be presenting alongside me, we'll be switching back and forward as we go through the two days, to break it up a bit for a bit of variety. Whoever isn't presenting will be able to answer questions in the chat. (Cotrainer), do you want to introduce yourself now too....We'll do a round of introductions for everyone else now, if people can switch their cams on that's great, don't need it on through the course but it is a bit nicer for us to see people, you can always switch it off if you need to answer the door, etc....I'll run through list rather than ask people to nominate each other, so if people can introduce themselves, say a little bit about what they're hoping to get out of this course role, and what previous experience they've had, if any with R. (Thank all.) You will have got some pre-instructions about accessing Rstudio or Rstudio cloud. We'll come onto this in a bit, but you've got a bit of grace before actual code writing, so don't panic if you've not got everything setup already. What we're going to start with is a bit of info about the course, what's possible with R, before we get into using R and RStudio. Will share my screen now to get going proper - is this zoomed in enough for people to see?"
 subtitle: "Session - Introduction"
 author: "Zoë Turner"
 format:
@@ -19,7 +19,7 @@ execute:
 embed-resources: true  
 ---
 
-## Agenda - Morning (about 3.5 hours)
+## Agenda - Morning
 
 Intro and Course Aims
 
@@ -59,15 +59,8 @@ The agenda for this morning looks like this. I'm going to talk a little bit abou
 
 ## Agenda - Afternoon
 
-Chapter overview
-
 ::: {.fragment .fade-in}
 Manipulating data with {dplyr}
-:::
-
-
-::: {.fragment .fade-in}
-Publishing with {quarto}
 :::
 
 ::: {.fragment .fade-in}
@@ -100,13 +93,13 @@ In the afternoon, we'll cover the main initial tasks you're likely to start with
 
 ::: incremental
 -   To introduce RStudio as an IDE (integrated development environment)
--   Introduce familiar concepts of data manipulation but using R
--   Practice these concepts and bring them together in a Quarto report
+-   Introduce basic data processes using R - importing, manipulation, creating visualisations
+
 :::
 
 ::: notes
 
-So the aim of this course is that it acts as a gentle introduction and essentially gets you to the point of being confident enough to start exploring R yourself. We're not going to cover everything you can do with R in a day, so we're just going to cover the basics and offer some pointers on where to go if you're interested in learning more. We won't for example, cover how to conduct a cost-effectiveness study in R, or even a linear regression, if it comes down to that. What we want to do is help you to get to the point where you feel confident in exploring R, and you're not baffled or intimidated by not knowing where to start.
+So the aim of this course is that it acts as a gentle introduction and essentially gets you to the point of being confident enough to start exploring R yourself. We're not going to cover everything you can do with R in a day, so we're just going to cover the basics and offer some pointers on where to go if you're interested in learning more. We won't for example, cover how to do a cost-effectiveness model in R, or even a basic linear regression, if it comes down to that. What we want to do is help you to get to the point where you feel confident in exploring R, and you're not baffled or intimidated by not knowing where to start.
 
 We'll cover the use of RStudio as an IDE, and the relationship between R and RStudio, get you to work on familiarity with basic data importing, data manipulation and visualising that data using some basic graphs. 
 
@@ -123,7 +116,7 @@ We'll cover the use of RStudio as an IDE, and the relationship between R and RSt
 
 ::: notes
 
-Now, obviously we're evangelists for the use of R, but I'd like to end this particular intro with some benefits for doing more of your analysis in R, rather than other tools.
+I'd like to end this particular intro with some benefits for doing more of your analysis in R, rather than other tools.
 
 One thing that's great about R is the community of R-Users that has grown up around it. So as you'll know, there is the excellent NHS-R Community, but there are also tons of special interest groups and communities with resources, tutorials and code libraries in whatever you're interested in. So if there are specific subjects or areas you're interested in, you're likely to find some resources and people who are also interested in the same things, and who are probably happy to help you on a bit, share interesting things. It's really one of the better things about R, compared to other languages like python.
 

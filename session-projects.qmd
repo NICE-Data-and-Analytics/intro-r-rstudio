@@ -19,17 +19,43 @@ library(countdown)
 
 <img src="img/session-projects/cracked_setwd.PNG" alt="Alison Horst&apos;s cartoons of three cubes, there is a setwd looking cross having broken an arm and a leg, the RProj with a skateboard and a small, concentrating purple cube with a helmet doing tricks on its skateboard" width="40%"/>
 
+::: notes
+
+The next session is about RStudio projects, which are a very nice, and highly recommended way of organising your files and code projects.
+
+For those of you working with the Posit cloud - projects work very differently, so the slides and menus might not make sense, so you might just be as well listening along, then at the end if its useful I'll just show you how it works in Posit Cloud.
+
+(check who is working in cloud vs desktop)
+
+:::
+
 ## Working Directory
 
 If you tell R/R Studio to look for a file, or save a plot, it will (by default) look in a place called the working directory (wd)
 
 <img src="img/session-projects/working-directory.PNG" alt="Screenshot of the tabs `Console/Terminal` and Jobs in RStudio and underneath the location of the workshop at ~" class="center"/>
 
+::: notes
+
+Before I show you how to setup projects, I'm going to back up a little and talk about a concept called the working directory.
+
+The 'working directory' is where R assumes your files are saved, and where it looks when you refer to those files in your code. Each project you create gets it's own working directory.
+
+You can see the current working directory by looking at this area in RStudio below the console and terminal tabs.
+
+:::
+
 ## Change overall default Working Directory
 
 Often defaults to the `Documents` folder but can be changed in `Tools/Global Options`
 
 <img src="img/session-projects/change-wd.PNG" alt="Screenshot of the Tools/Global Options with the Default working directory box highlighted." class="center"/>
+
+::: notes
+
+The working directory often defaults to something like the 'Documents' folder. This isn't ideal, but there isn't an obvious default I would unhesitatingly recommend. If you want to change it you can amend it in Tools/Global options and under the 'General' tab, then you can select the default working directory you want.
+
+:::
 
 ## Bookmarks
 
@@ -38,6 +64,12 @@ A Project can make it easier to find tell your session where to get files from a
 ::: incremental
 -   share this location with others
 -   move between projects easily
+:::
+
+::: notes
+
+OK, so having dealt with that, lets's talk about the benefits of projects. As well as the obvious one of keeping your work separate, clean and tidy, working in projects makes it easier for you to share projects with others, and also move between projects yourself without getting overwhelmed with clutter and not knowing where things are.
+
 :::
 
 ## Project menu
@@ -57,9 +89,13 @@ Step 2
 :::
 
 ::: notes
-People on the cloud can't follow this currently but it's recommended to review this once on a computer.
 
-For those who have set up their own computers this will be needed for the unzipped data folder that was downloaded in order to see the Files in the bottom pane.
+Let's create a project now. One way of doing this is to click the drop down in the top right, with the R in the little cube. If you do this, you'll get options to create a new project, close a project, and if you've been using projects in the past, the last 5 you've used will be visible here to switch to. Your project list will probably be blank, which is what we'd expect.
+
+To create a new project, you can click on the new project option. You can also do this through the file menu, which gets you to the same screen, which looks like this (on the right). Then click 'New Directory'
+
+(check everyone ok before flicking to next slides)
+
 :::
 
 ## Project Type and Name wizards
@@ -79,21 +115,14 @@ Step 4
 :::
 
 ::: notes
-Show creating a new directory, for example Quarto website as all the template files are also created.
 
-Then show create in an existing directory for the benefit of those working on their own computers.
+Then click just 'New Project' (top option), and you'll get through to this screen (show step 4), where you can give your project a directory name. It will be created as a subdirectory below (you can amend this if you wish).
 
-Note how the name is derived from the folder.
+Having completed a directory name and reviewed the parent directory, you can click 'create project' and it'll set it up
+
+(demo what is looks like now with a test project)
+
 :::
-
-## Have a go! *Not for the RStudio Cloud*
-
-1.  Create a project in an existing folder using the Project menu.  
-2.  Note the name of the `.Rproj` file that is generated automatically.  
-3.  Create a new project, this time choosing the selection `Shiny Application`. What files are created?
-4.  Using the Project menu move between the two projects.
-
-Extra: Delete one of the `.Rproj` files and then try to select it from the menu. What happens?
 
 ## Browsing in RStudio
 
@@ -105,6 +134,12 @@ Click the three dot icon in the bottom right quadrant, Files tab:
 ::: {.column width="50%"}
 <img src="img/session-projects/wd-files.PNG" alt="A screenshot of the Files tab with the three dot button highlighted, the words Click to open and explorer type browser is on the image."/>
 :::
+:::
+
+::: notes
+
+Once you've completed a project, the files pane will change to the new project location, together with the files at that location. If you need to browse to another location, you can do so by clicking the three little dots in the top right of the files pane, then you'll get a box that pops up that allows you to change the folder the pane is showing.
+
 :::
 
 ## Getting back to the working directory
@@ -127,4 +162,20 @@ Once a project has been created an R hex logo appears in the Files tab next to t
 :::
 :::
 
+::: notes
+
+To get back to the working directory, you can either click the grey arrow next to the file pathway in the console, or click on the R in the cube in the top right of the file pane.
+
+:::
+
 ## End session
+
+::: notes
+
+That's the end
+
+(check understanding)
+
+Next topic is importing data
+
+:::

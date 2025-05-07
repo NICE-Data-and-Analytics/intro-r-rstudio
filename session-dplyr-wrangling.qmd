@@ -42,6 +42,12 @@ beds_data <- read_csv(url("https://raw.githubusercontent.com/nhs-r-community/int
 
 Artwork by @allison_horst
 
+::: notes
+
+This session is about data wrangling with dplyr. I think this is the most important session - so do try and stay with it if you can. Dplyr is probably the one package I'll use for every R Project, and if you can be good at dplyr then you'll save yourself loads of time in the future.
+
+:::
+
 ## Wrangling
 
 Is the reshaping or transforming of data into a format which is easier to work with  
@@ -99,9 +105,11 @@ dplyr::summarise()
 
 ::: notes
 
-So in dplyr there are 5 main functions or verbs, arrange, filter, mutate, group_by, and summarise. Note that summarise can be spelt either way. The main author of the tidyverse is a New Zealander, so British English spellings work too.
+In dplyr there are a handful of main functions or verbs, arrange, filter, mutate, group_by, and summarise. Note that summarise can be spelt either way. The main author of the tidyverse is a New Zealander, so British English spellings work too.
 
-Some of these may make sense, arrange/filter, mutate may be new and group_by may be a false friend to SQL users as it conceptually does different things - it doesn't distinct (use `distinct()` or `unique()`)
+Some of these, like arrange and filter, should make intuitive sense, others, like mutate, are less intuative but will be covered in due course.
+
+These functions are are simple in themselves but when put together can yield complex operations when built up.
 
 :::
 
@@ -121,7 +129,7 @@ mash
 
 ::: notes
 
-Now, to illustrate how these work, I'm going to draw the analogy with a cooking recipe. In a cooking recipe, for example for mashed potato, you're following a series of steps and carrying out those steps sequentially, to get the outcome you want.
+Now, to illustrate how these chains of verbs work, I'm going to draw the analogy with a cooking recipe. In a cooking recipe, for example for mashed potato, you're following a series of steps and carrying out those steps sequentially, to get the outcome you want.
 
 :::
 
@@ -408,79 +416,81 @@ What we can do in this circumstance is to tell summarise to ignore the NA values
 (demo)
 And if you run that, you see that the result is an average of 300 beds for the whole dataset.
 
-:::
+<!-- ::: -->
 
-## Have a go!
+<!-- ## Have a go! -->
 
-Instead of `mean()` use `median()`
+<!-- Instead of `mean()` use `median()` -->
 
-```{r}
-object |> 
-  summarise(new_name = function_name(column_name,
-                                     na.rm = ???))
+<!-- ```{r} -->
+<!-- object |>  -->
+<!--   summarise(new_name = function_name(column_name, -->
+<!--                                      na.rm = ???)) -->
 
-```
+<!-- ``` -->
 
 
-Use a `sum()` statistic twice
+<!-- Use a `sum()` statistic twice -->
 
-```{r}
-object |> 
-  summarise(col_1 = function_name(beds_av,
-                                  na.rm = ???),
-            col_2 = function_name(occ_av,
-                                  na.rm = ???)
-)
+<!-- ```{r} -->
+<!-- object |>  -->
+<!--   summarise(col_1 = function_name(beds_av, -->
+<!--                                   na.rm = ???), -->
+<!--             col_2 = function_name(occ_av, -->
+<!--                                   na.rm = ???) -->
+<!-- ) -->
 
-```
+<!-- ``` -->
 
-```{r}
-#| eval: true
-#| echo: false
-countdown::countdown(minutes = 10,
-                     color_border = "#005EB8",
-                     color_text = "#005EB8",
-                     color_running_text = "white",
-                     color_running_background = "#005EB8",
-                     color_finished_text = "#005EB8",
-                     color_finished_background = "white",
-                     margin = "0.9em",
-                     font_size = "2em")
-```
+<!-- ```{r} -->
+<!-- #| eval: true -->
+<!-- #| echo: false -->
+<!-- countdown::countdown(minutes = 10, -->
+<!--                      color_border = "#005EB8", -->
+<!--                      color_text = "#005EB8", -->
+<!--                      color_running_text = "white", -->
+<!--                      color_running_background = "#005EB8", -->
+<!--                      color_finished_text = "#005EB8", -->
+<!--                      color_finished_background = "white", -->
+<!--                      margin = "0.9em", -->
+<!--                      font_size = "2em") -->
+<!-- ``` -->
 
-::: notes
+<!-- ::: notes -->
 
-Ok, so I'm going to invite you to have a go yourselves now, to create summary statistics using this data, first to work out the median number of beds, with the median function, then also to return the total number of beds and the total number of occupied beds across all periods in the dataset. Strictly speaking these would be bed-quarters, which doesn't make sense as a unit, but for the purposes of learning it's ok.
+<!-- Ok, so I'm going to invite you to have a go yourselves now, to create summary statistics using this data, first to work out the median number of beds, with the median function, then also to return the total number of beds and the total number of occupied beds across all periods in the dataset. Strictly speaking these would be bed-quarters, which doesn't make sense as a unit, but for the purposes of learning it's ok. -->
 
-I'll give you 10 mins, then we'll look at the answer.
+<!-- I'll give you 10 mins, then we'll look at the answer. -->
 
-:::
+<!-- ::: -->
 
-## Answer for summary statistics
+<!-- ## Answer for summary statistics -->
 
-`median()`
+<!-- `median()` -->
 
-```{r}
-#| eval: true
-beds_data |> 
-  summarise(median_beds = median(beds_av,
-                                 na.rm = TRUE))
-```
+<!-- ```{r} -->
+<!-- #| eval: true -->
+<!-- beds_data |>  -->
+<!--   summarise(median_beds = median(beds_av, -->
+<!--                                  na.rm = TRUE)) -->
+<!-- ``` -->
 
-`sum()`
+<!-- `sum()` -->
 
-```{r}
-#| eval: true
-beds_data |> 
-  summarise(total_beds = sum(beds_av, na.rm = TRUE),
-            total_occupacy = sum(occ_av, na.rm = TRUE))
-```
+<!-- ```{r} -->
+<!-- #| eval: true -->
+<!-- beds_data |>  -->
+<!--   summarise(total_beds = sum(beds_av, na.rm = TRUE), -->
+<!--             total_occupacy = sum(occ_av, na.rm = TRUE)) -->
+<!-- ``` -->
 
-::: notes
+<!-- ::: notes -->
 
-Here's the code and the results you hopefully got. How did everyone do? Anyone want to volunteer whether they got those results or not?
+<!-- Here's the code and the results you hopefully got. How did everyone do? Anyone want to volunteer whether they got those results or not? -->
 
-(discuss a bit then move on)
+<!-- (discuss a bit then move on) -->
+
+<!-- ::: -->
 
 :::
 
